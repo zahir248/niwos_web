@@ -68,4 +68,9 @@ class LeaveRequest extends Model
         });
     }
 
+    // Custom attribute to format Duration
+    public function getFormattedDurationAttribute()
+    {
+        return $this->Duration . ' days';
+    }
 }

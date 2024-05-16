@@ -56,7 +56,7 @@ class ManageLeaveRequestResource extends Resource
                 Tables\Columns\TextColumn::make('NW_LeaveRequest_ID')->label('Request ID')->searchable(),
                 Tables\Columns\TextColumn::make('StartDate')->label('Start Date')->searchable(),
                 Tables\Columns\TextColumn::make('EndDate')->label('End Date')->searchable(),
-                Tables\Columns\TextColumn::make('Duration')->label('Duration (days)')->searchable(),
+                Tables\Columns\TextColumn::make('formatted_duration')->label('Duration')->searchable(),
                 Tables\Columns\TextColumn::make('SubmissionTimeDate')->label('Submission Date & Time')->searchable(),
                 Tables\Columns\TextColumn::make('Reason')->label('Reason')->searchable(),
                 Tables\Columns\TextColumn::make('leave_type.Type')->label('Type'),

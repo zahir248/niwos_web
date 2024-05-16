@@ -67,4 +67,27 @@ class AccessRequest extends Model
             }
         });
     }
+
+    // Custom attribute to format Duration
+    public function getFormattedDurationAttribute()
+    {
+        $minutes = $this->Duration;
+        $days = floor($minutes / (60 * 24));
+        $hours = floor(($minutes % (60 * 24)) / 60);
+        $mins = $minutes % 60;
+
+        $formatted = '';
+
+        if ($days > 0) {
+            $formatted .= $days . ' days ';
+        }
+        if ($hours > 0) {
+            $formatted .= $hours . ' hours ';
+        }
+        if ($mins > 0) {
+            $formatted .= $mins . ' minutes';
+        }
+
+        return trim($formatted);
+    }
 }

@@ -3,15 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ManageAccessRequestResource\Pages;
-use App\Filament\Resources\ManageAccessRequestResource\RelationManagers;
 use App\Models\AccessRequest;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
 
 class ManageAccessRequestResource extends Resource
@@ -22,21 +18,21 @@ class ManageAccessRequestResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox';
 
-    public static function form(Form $form): Form
+    public static function form(Forms\Form $form): Forms\Form
     {
         return $form
             ->schema([
                 Forms\Components\Textarea::make('Comment')
-                    ->label('Comment') 
-                    ->rows(4) 
-                    ->placeholder('Enter comment here'), 
+                    ->label('Comment')
+                    ->rows(4)
+                    ->placeholder('Enter comment here'),
                 Forms\Components\Select::make('AccessRequestStatus_ID')
                     ->label('Status')
                     ->options([
                         '1' => 'Approved',
                         '3' => 'Rejected',
                     ])
-                    ->required(),            
+                    ->required(),
             ]);
     }
 
@@ -47,7 +43,7 @@ class ManageAccessRequestResource extends Resource
                 Tables\Columns\TextColumn::make('NW_AccessRequest_ID')->label('Request ID')->searchable(),
                 Tables\Columns\TextColumn::make('StartTimeDate')->label('Start Date & Time')->searchable(),
                 Tables\Columns\TextColumn::make('EndTimeDate')->label('End Date & Time')->searchable(),
-                Tables\Columns\TextColumn::make('Duration')->label('Duration (minutes)')->searchable(),
+                Tables\Columns\TextColumn::make('formatted_duration')->label('Duration')->searchable(),
                 Tables\Columns\TextColumn::make('SubmissionTimeDate')->label('Submission Date & Time')->searchable(),
                 Tables\Columns\TextColumn::make('Reason')->label('Reason')->searchable(),
                 Tables\Columns\TextColumn::make('access_request_area.AreaName')->label('Area Name'),
@@ -58,26 +54,26 @@ class ManageAccessRequestResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('AccessRequestStatus_ID')
-                ->label('Status')
-                ->options([
-                    '1' => 'Approved',
-                    '2' => 'Pending',
-                    '3' => 'Rejected',
-                    '4' => 'Cancelled',
-                ]), 
+                    ->label('Status')
+                    ->options([
+                        '1' => 'Approved',
+                        '2' => 'Pending',
+                        '3' => 'Rejected',
+                        '4' => 'Cancelled',
+                    ]),
                 SelectFilter::make('AccessRequestArea_ID')
-                ->label('Area Name')
-                ->options([
-                    '1' => 'Meeting rooms',
-                    '2' => 'Training rooms',
-                ]), 
+                    ->label('Area Name')
+                    ->options([
+                        '1' => 'Meeting rooms',
+                        '2' => 'Training rooms',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()->label('Response'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    //Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -99,11 +95,11 @@ class ManageAccessRequestResource extends Resource
     }
 
     public static function canCreate(): bool
-   {
-      return false;
-   }
+    {
+        return false;
+    }
 
-   public static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return 'Manage Requests';
     }

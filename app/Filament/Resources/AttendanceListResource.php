@@ -3,21 +3,18 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AttendanceListResource\Pages;
-use App\Filament\Resources\AttendanceListResource\RelationManagers;
 use App\Models\Attendance;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\SelectFilter;
 
 class AttendanceListResource extends Resource
 {
     protected static ?string $model = Attendance::class;
-    
+
     protected static ?string $navigationGroup = 'Attendances';
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
@@ -26,7 +23,7 @@ class AttendanceListResource extends Resource
     {
         return $form
             ->schema([
-            
+                // Form schema
             ]);
     }
 
@@ -39,31 +36,31 @@ class AttendanceListResource extends Resource
                 Tables\Columns\TextColumn::make('AttendanceDate')->label('Date')->searchable(),
                 Tables\Columns\TextColumn::make('PunchInTime')->label('Arrival Time')->searchable(),
                 Tables\Columns\TextColumn::make('PunchOutTime')->label('Departure Time')->searchable(),
-                Tables\Columns\TextColumn::make('User.department.DepartmentName')->label('Department')->searchable(),           
-                Tables\Columns\TextColumn::make('User.Niwos_ID')->label('Employee ID')->searchable(), 
+                Tables\Columns\TextColumn::make('User.department.DepartmentName')->label('Department')->searchable(),
+                Tables\Columns\TextColumn::make('User.Niwos_ID')->label('Employee ID')->searchable(),
                 Tables\Columns\TextColumn::make('attendance_status.Status')->label('Status'),
-                ])
+            ])
             ->filters([
                 SelectFilter::make('ShiftSession_ID')
-                ->label('Session')
-                ->options([
-                    '1' => 'In',
-                    '2' => 'Out',
-                ]),
-            SelectFilter::make('AttendanceStatus_ID')
-                ->label('Status')
-                ->options([
-                    '1' => 'On time',
-                    '2' => 'Late',
-                    '3' => 'Too early',
-                ]), 
+                    ->label('Session')
+                    ->options([
+                        '1' => 'In',
+                        '2' => 'Out',
+                    ]),
+                SelectFilter::make('AttendanceStatus_ID')
+                    ->label('Status')
+                    ->options([
+                        '1' => 'On time',
+                        '2' => 'Late',
+                        '3' => 'Too early',
+                    ]),
             ])
             ->actions([
-                //Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    //Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -71,7 +68,7 @@ class AttendanceListResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // Relations
         ];
     }
 
@@ -80,16 +77,16 @@ class AttendanceListResource extends Resource
         return [
             'index' => Pages\ListAttendancesList::route('/'),
             'create' => Pages\CreateAttendanceList::route('/create'),
-            //'edit' => Pages\EditAttendance::route('/{record}/edit'),
+            // 'edit' => Pages\EditAttendance::route('/{record}/edit'),
         ];
     }
 
     public static function canCreate(): bool
-   {
-      return false;
-   }
+    {
+        return false;
+    }
 
-   public static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return 'Monitor Attendances';
     }
