@@ -154,4 +154,36 @@ class User extends Authenticatable implements FilamentUser
         return $this->belongsTo(AccountStatus::class, 'AccountStatus_ID');
     }
 
+    public function getLatePercentageAttribute()
+{
+    $firstAttendanceDate = $this->attendances()->min('AttendanceDate');
+    $lastAttendanceDate = $this->attendances()->max('AttendanceDate');
+
+    $totalWorkingDays = 0;
+    $lateOrAbsentDays = 0;
+
+    for ($date = new \DateTime($firstAttendanceDate); $date <= new \DateTime($lastAttendanceDate); $date->modify('+1 day')) {
+        $totalWorkingDays++;
+
+        $attendance = $this->attendances()->whereDate('AttendanceDate', $date->format('Y-m-d'))->first();
+
+        if (!$attendance || in_array($attendance->AttendanceStatus_ID, [2, 4])) {
+            $lateOrAbsentDays++;
+        }
+    }
+
+    if ($totalWorkingDays == 0) {
+        return 'N/A';
+    }
+
+    $latePercentage = ($lateOrAbsentDays / $totalWorkingDays) * 100;
+
+    return round($latePercentage, 2) . '%'; // Append '%' to the percentage
+}
+
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'id');
+    }
 }
