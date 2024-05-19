@@ -46,4 +46,9 @@ class CreateIssueWarning extends CreateRecord
         // Redirect to the previous page without saving the record
         return;
     }
+
+    public function getTitle(): string
+    {
+        return 'Issue Warning Letter'; // Change the page title here
+    }
 }

@@ -27,7 +27,7 @@ class ManageAccessRequestResource extends Resource
                     ->label('Employee ID')
                     ->disabled(),
                 Forms\Components\TextInput::make('AccessRequestArea_ID')
-                    ->label('Area Name')
+                    ->label('Area ID')
                     ->disabled(),
                 Forms\Components\DateTimePicker::make('StartTimeDate')
                     ->label('Start Date & Time')
