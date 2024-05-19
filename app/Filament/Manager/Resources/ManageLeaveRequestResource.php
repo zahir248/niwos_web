@@ -27,6 +27,15 @@ class ManageLeaveRequestResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id')
+                    ->label('Employee ID')
+                    ->disabled(),
+                Forms\Components\DatePicker::make('StartDate')
+                ->label('Start Date')
+                ->disabled(),
+                Forms\Components\DatePicker::make('EndDate')
+                ->label('End Date')
+                ->disabled(),
                 Forms\Components\Textarea::make('Comment')
                 ->label('Comment') 
                 ->rows(4) 

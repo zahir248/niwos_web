@@ -13,6 +13,8 @@ class Attendance extends Model
 
     protected $primaryKey = 'Attendance_ID'; // Specify the primary key column name
 
+    public $timestamps = false; // Disable timestamps
+
     protected $fillable = [
         'NW_Attendance_ID',
         'PunchInTime',

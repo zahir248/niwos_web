@@ -65,7 +65,9 @@ class AttendanceListResource extends Resource
                     '1' => 'On time',
                     '2' => 'Late',
                     '3' => 'Too early',
-                ]),             ])
+                    '5' => 'On leave',
+                ]),             
+            ])
             ->actions([
                 //Tables\Actions\EditAction::make(),
             ])
