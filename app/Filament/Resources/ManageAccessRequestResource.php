@@ -9,6 +9,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
+use App\Models\UserAccessArea; 
 
 class ManageAccessRequestResource extends Resource
 {
@@ -22,6 +23,18 @@ class ManageAccessRequestResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id')
+                    ->label('Employee ID')
+                    ->disabled(),
+                Forms\Components\TextInput::make('AccessRequestArea_ID')
+                    ->label('Area Name')
+                    ->disabled(),
+                Forms\Components\DateTimePicker::make('StartTimeDate')
+                    ->label('Start Date & Time')
+                    ->disabled(),
+                Forms\Components\DateTimePicker::make('EndTimeDate')
+                    ->label('End Date & Time')
+                    ->disabled(),
                 Forms\Components\Textarea::make('Comment')
                     ->label('Comment')
                     ->rows(4)
