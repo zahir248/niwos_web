@@ -13,6 +13,8 @@ class AccessRequestArea extends Model
 
     protected $primaryKey = 'AccessRequestArea_ID'; // Specify the primary key column name
 
+    public $timestamps = false; // Disable timestamps
+
     protected $fillable = [
         'AreaName',
         // Add other fillable attributes if needed
