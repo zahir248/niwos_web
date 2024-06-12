@@ -16,6 +16,15 @@ class ManagerWidgets extends BaseWidget
         // Get the logged-in user's ID
         $userId = Auth::user()->id;
 
+        // Get the logged-in user
+        $loggedInUser = Auth::user();
+
+        // Retrieve the department name of the logged-in user
+        $departmentName = $loggedInUser->department ? $loggedInUser->department->DepartmentName : 'No Department';
+
+        // Log the department name for debugging
+        \Log::info('Department Name: ' . $departmentName);
+
         // Count total users managed by the logged-in user
         $totalUsers = User::where('Manager_ID', $userId)->count();
 
@@ -33,6 +42,7 @@ class ManagerWidgets extends BaseWidget
             Card::make('Total Subordinates', $totalUsers),
             Card::make('Total Attendances', $totalAttendances),
             Card::make('Total Pending Requests', $totalPendingRequests),
+            Card::make('Department', $departmentName),
         ];
     }
 }
