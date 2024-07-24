@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\AttendanceListResource\Widgets\SummarizeAttendance;
+use App\Filament\Resources\AttendanceListResource\Widgets\OnLeaveAttendance;
 
 class ListAttendancesList extends ListRecords
 {
@@ -15,7 +16,8 @@ class ListAttendancesList extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            SummarizeAttendance::class
+            SummarizeAttendance::class,
+            OnLeaveAttendance::class,
         ];
     }
 
