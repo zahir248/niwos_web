@@ -8,6 +8,7 @@ use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\AttendanceListResource\Widgets\SummarizeAttendance;
 use App\Filament\Resources\AttendanceListResource\Widgets\OnLeaveAttendance;
+use App\Filament\Resources\AttendanceListResource\Widgets\AbsentAttendance;
 
 class ListAttendancesList extends ListRecords
 {
@@ -17,6 +18,7 @@ class ListAttendancesList extends ListRecords
     {
         return [
             SummarizeAttendance::class,
+            AbsentAttendance::class,
             OnLeaveAttendance::class,
         ];
     }
