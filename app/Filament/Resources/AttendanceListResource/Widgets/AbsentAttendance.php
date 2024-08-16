@@ -64,7 +64,7 @@ class AbsentAttendance extends BaseWidget
         $stats = [];
 
         // Create a single Stat entry for all absent users
-        $stats[] = Stat::make("Absent for the last week (without leave letter)", "")
+        $stats[] = Stat::make("Absent for the last week (without reason)", "")
             ->description(($numberedDetails));
 
         return $stats;
