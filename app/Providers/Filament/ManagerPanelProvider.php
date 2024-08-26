@@ -28,7 +28,7 @@ class ManagerPanelProvider extends PanelProvider
             ->path('manager')
             ->login()
             ->passwordReset()
-            ->profile(EditProfile::class)
+            //->profile(EditProfile::class)
             ->colors([
                 'primary' => Color::Emerald,
             ])
