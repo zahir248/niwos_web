@@ -41,7 +41,7 @@ class OnLeaveAttendance extends BaseWidget
 
         // Create a single Stat entry for all on leave records
         $stats[] = Stat::make("On leave for the current week", "")
-            ->description(nl2br($numberedDetails));
+            ->description(($numberedDetails));
 
         return $stats;
     }

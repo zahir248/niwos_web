@@ -49,7 +49,7 @@ class SummarizeAttendance extends BaseWidget
 
         // Create a single Stat entry for all late records
         $stats[] = Stat::make("Late attendance for the last two weeks", "")
-            ->description(nl2br($numberedDetails));
+            ->description(($numberedDetails));
 
         return $stats;
     }
